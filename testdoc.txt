@@ -1,0 +1,32 @@
+Rate Limit Test Results - "place a bid" Endpoint
+Test Configuration:
+
+Total Requests: 100
+Delay: 0ms (maximum speed)
+Total Execution Time: ~429ms
+📊 Response Code Distribution
+Status Code	Count	Percentage	Description
+201 Created	20	20%	✅ Successful bids
+429 Too Many Requests	80	80%	🚫 Rate limited
+⚡ Performance Metrics
+Response Times:
+
+First request: 152ms
+Subsequent 201 responses: 2-5ms (avg ~3ms)
+429 responses: 2-7ms (avg ~2.5ms)
+Rate Limiting Behavior:
+
+✅ Requests 0-19: All succeeded (201 Created)
+🚫 Requests 20-99: All rate limited (429 Too Many Requests)
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+
+Circuit Breaker Pattern
+What is it?
+A circuit breaker prevents your service from repeatedly trying to call a failing or slow dependency (like another microservice or a database).
+It “opens” after a certain number of failures, and for a period, all calls fail fast (without even trying the dependency).
+After a timeout, it allows a few “test” requests to see if the dependency has recovered (“half-open” state).
+Why use it?
+Prevents cascading failures in distributed systems.
+Improves system stability and user experience.
